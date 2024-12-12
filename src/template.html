@@ -6,6 +6,138 @@
   <title>To do list</title>
 </head>
 <body>
-  <button>Test</button>
+  <header>
+    <div class="user">
+      <p>Jane Doe</p>
+      <div class="profile_picture_div">
+        <img src="./assets/img/default_avatar.png" alt="Default profile picture">
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <ul class="task_type_filter">
+      <li>
+        <p>All tasks</p>
+      </li>
+      <li>
+        <p>Today</p>
+      </li>
+      <li>
+        <p>Upcoming</p>
+      </li>
+      <li>
+        <p>Anytime</p>
+      </li>
+    </ul>
+
+    <h2>Projects</h2>
+    <ul class="projects_list">
+      <li>
+        <p>Chores</p>
+      </li>
+      <li>
+        <p>Work</p>
+      </li>
+      <li>
+        <p>Workout routine</p>
+      </li>
+      <li>
+        <p>Mom's birthday</p>
+      </li>
+      <li>
+        <p>Big project with a very long description</p>
+      </li>
+    </ul>
+  </nav>
+  <main>
+    <h1>All tasks</h1>
+
+    <div class="tasks">
+      <div class="task add_button">
+        <button>+</button>
+      </div>
+
+      <div class="task">
+        <div class="project_name">
+          <p>Mom's birthday</p>
+        </div>
+        <ul class="task_breakdown">
+          <li>
+            <input type="checkbox" />
+            <label>Bake the cake</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label>Choose filling</label>
+          </li>
+          <li>
+            <input type="checkbox" checked />
+            <label>Buy flour</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="task">
+        <div class="project_name">
+          <p>Mom's birthday</p>
+        </div>
+        <ul class="task_breakdown">
+          <li>
+            <input type="checkbox" checked />
+            <label>Buy gift</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="task">
+        <div class="project_name">
+          <p>Chores</p>
+        </div>
+        <ul class="task_breakdown">
+          <li>
+            <input type="checkbox" />
+            <label>Laundry</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label>Fold laundry</label>
+          </li>
+          <li>
+            <input type="checkbox" checked />
+            <label>Dry clothes</label>
+          </li>
+          <li>
+            <input type="checkbox" checked />
+            <label>Start washing machine</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="task">
+        <div class="project_name">
+          <p>Work</p>
+        </div>
+        <ul class="task_breakdown">
+          <li>
+            <input type="checkbox" />
+            <label>Prepare meeting</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label>Call Bill</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label>Finish presentation</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label>Check room reservation</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
 </body>
 </html>

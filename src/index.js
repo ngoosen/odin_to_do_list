@@ -10,3 +10,5 @@ testButton.addEventListener("click", () => {
   const newProject = createProject("Test");
   console.log("🚀 ~ testButton.addEventListener ~ newProject:", newProject);
 });
+
+console.log(window.innerWidth);

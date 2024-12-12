@@ -10,4 +10,245 @@ html {
   font-size: 16px;
 
   box-sizing: inherit;
+
+  --sage_green: #68887d;
+  --grey_blue: #87a2a8;
+  --light_grey_blue: #e8eef0;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+}
+
+header {
+  grid-column: span 2;
+
+  display: flex;
+  justify-content: flex-end;
+
+  height: 60px;
+
+  padding: 10px;
+
+  color: #ffffff;
+  background-color: var(--sage_green);
+}
+
+nav {
+  min-width: 200px;
+
+  padding: 20px 0;
+
+  box-shadow: 0 0 7px 0 var(--grey_blue);
+}
+
+nav h2 {
+  margin: 20px;
+  margin-top: 50px;
+
+  font-size: 20px;
+
+  color: var(--sage_green);
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav li {
+  padding: 5px 20px;
+}
+
+nav li p {
+  overflow: hidden;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+
+nav li:hover {
+  cursor: pointer;
+  background-color: #e7f4f7;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.user:hover .profile_picture_div {
+  cursor: pointer;
+  text-decoration: underline;
+  background-color: #ffffff;
+}
+
+.user .profile_picture_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 100%;
+}
+
+.user .profile_picture_div img {
+  width: 36px;
+  height: 36px;
+
+  border-radius: 100%;
+}
+
+main {
+  height: calc(100vh - 60px);
+
+  padding: 20px 60px;
+
+  overflow: auto;
+}
+
+main h1 {
+  position: relative;
+
+  padding-bottom: 7px;
+
+  color: var(--sage_green);
+  font-size: 30px;
+
+  border: solid var(--sage_green);
+  border-width: 0 0 .08em 0;
+}
+
+.tasks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+
+  width: 100%;
+  height: fit-content;
+
+  padding: 20px;
+}
+
+.task {
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 var(--grey_blue);
+}
+
+.add_button button {
+  appearance: none;
+  border: none;
+
+  width: 100%;
+  height: 100%;
+
+  font-size: 40px;
+
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.add_button button:hover {
+  cursor: pointer;
+  color: var(--grey_blue);
+  background-color: var(--light_grey_blue);
+}
+
+.project_name {
+  padding: 5px 10px;
+
+  background-color: var(--light_grey_blue);
+
+  border-radius: 5px 5px 0 0;
+  border: solid var(--sage_green);
+  border-width: 0 0 1px 0;
+}
+
+.project_name p {
+  color: var(--sage_green);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.task_breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  padding: 15px 20px;
+
+  list-style: none;
+}
+
+.task_breakdown li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.task_breakdown li:first-of-type {
+  color: #4d4d4d;
+  font-weight: bold;
+}
+
+.task_breakdown li:not(:first-of-type) {
+  color: #4d4d4d;
+  margin-left: 15px;
+}
+
+.task_breakdown label,
+.task_breakdown input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.task_breakdown input[type="checkbox"] {
+  position: relative;
+  appearance: none;
+
+  width: 13px;
+  height: 13px;
+  min-width: 13px;
+  min-height: 13px;
+
+  margin-top: 5px;
+
+  border-radius: 100%;
+  border: 1px solid #4d4d4d;
+}
+
+.task_breakdown input[type="checkbox"]:checked {
+  border-color: var(--sage_green);
+}
+
+.task_breakdown input[type="checkbox"]:checked::before {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 80%;
+  height: 80%;
+
+  border-radius: 100%;
+  background-color: var(--sage_green);
+}
+
+.task_breakdown input[type="checkbox"]:checked ~ label {
+  text-decoration: line-through;
+  color: var(--sage_green);
 }
