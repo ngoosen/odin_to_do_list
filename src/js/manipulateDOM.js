@@ -4,10 +4,13 @@ function generateUUID() {
   );
 }
 
-function deleteTask(taskNode, taskName = "this") {
-  console.log("🚀 ~ deleteTask ~ taskNode:", taskNode);
+function createPopup(contentNodes, additionalClasses = []) {
   const popupContainerDiv = document.createElement("div");
   popupContainerDiv.classList.add("popup_container");
+
+  additionalClasses.forEach(className => {
+    popupContainerDiv.classList.add(className);
+  });
 
   const popupMainDiv = document.createElement("div");
   popupMainDiv.classList.add("popup_main");
@@ -18,10 +21,24 @@ function deleteTask(taskNode, taskName = "this") {
   const popupMessageDiv = document.createElement("div");
   popupMessageDiv.classList.add("popup_message");
 
+  contentNodes.forEach(node => {
+    popupMessageDiv.appendChild(node);
+  })
+
+  popupContainerDiv.appendChild(popupMainDiv);
+  popupContainerDiv.appendChild(popupMessageDiv);
+
+  document.body.appendChild(popupContainerDiv);
+}
+
+function removePopup() {
+  const popupContainer = document.querySelector(".popup_container");
+  document.body.removeChild(popupContainer);
+}
+
+function deleteTask(taskNode, taskName = "this") {
   const message = document.createElement("p");
   message.textContent = `Are you sure your want to delete ${taskName}?`;
-
-  popupMessageDiv.appendChild(message);
 
   const yesButton = document.createElement("button");
   yesButton.textContent = "Yes";
@@ -29,26 +46,23 @@ function deleteTask(taskNode, taskName = "this") {
   yesButton.addEventListener("click", () => {
     const taskList = document.querySelector(".tasks");
     taskList.removeChild(taskNode);
-
-    document.body.removeChild(popupContainerDiv);
+    removePopup();
   });
 
   const noButton = document.createElement("button");
   noButton.textContent = "No";
   noButton.addEventListener("click", () => {
-    document.body.removeChild(popupContainerDiv);
+    removePopup();
   });
 
   const buttonsDiv = document.createElement("div");
   buttonsDiv.appendChild(yesButton);
   buttonsDiv.appendChild(noButton);
 
-  popupMessageDiv.appendChild(buttonsDiv);
-
-  popupContainerDiv.appendChild(popupMainDiv);
-  popupContainerDiv.appendChild(popupMessageDiv);
-
-  document.body.appendChild(popupContainerDiv);
+  createPopup([
+    message,
+    buttonsDiv,
+  ]);
 }
 
 export const DOMManipulation = (function() {
