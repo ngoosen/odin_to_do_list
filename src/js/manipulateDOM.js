@@ -4,7 +4,8 @@ function generateUUID() {
   );
 }
 
-function deleteTask(taskNode) {
+function deleteTask(taskNode, taskName = "this") {
+  console.log("🚀 ~ deleteTask ~ taskNode:", taskNode);
   const popupContainerDiv = document.createElement("div");
   popupContainerDiv.classList.add("popup_container");
 
@@ -18,7 +19,7 @@ function deleteTask(taskNode) {
   popupMessageDiv.classList.add("popup_message");
 
   const message = document.createElement("p");
-  message.textContent = "Are you sure your want to delete this?";
+  message.textContent = `Are you sure your want to delete ${taskName}?`;
 
   popupMessageDiv.appendChild(message);
 
@@ -65,7 +66,7 @@ export const DOMManipulation = (function() {
     const deleteTaskButton = document.createElement("button");
     deleteTaskButton.classList.add("delete_task_icon");
     deleteTaskButton.addEventListener("click", () => {
-      deleteTask(mainTaskDiv);
+      deleteTask(mainTaskDiv, mainTaskName);
     });
     projectNameDiv.appendChild(deleteTaskButton);
 
