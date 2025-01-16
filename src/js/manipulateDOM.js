@@ -5,8 +5,49 @@ function generateUUID() {
 }
 
 function deleteTask(taskNode) {
-  const taskList = document.querySelector(".tasks");
-  taskList.removeChild(taskNode);
+  const popupContainerDiv = document.createElement("div");
+  popupContainerDiv.classList.add("popup_container");
+
+  const popupMainDiv = document.createElement("div");
+  popupMainDiv.classList.add("popup_main");
+  popupMainDiv.addEventListener("click", () => {
+    document.body.removeChild(popupContainerDiv);
+  });
+
+  const popupMessageDiv = document.createElement("div");
+  popupMessageDiv.classList.add("popup_message");
+
+  const message = document.createElement("p");
+  message.textContent = "Are you sure your want to delete this?";
+
+  popupMessageDiv.appendChild(message);
+
+  const yesButton = document.createElement("button");
+  yesButton.textContent = "Yes";
+  yesButton.classList.add("confirmation_button");
+  yesButton.addEventListener("click", () => {
+    const taskList = document.querySelector(".tasks");
+    taskList.removeChild(taskNode);
+
+    document.body.removeChild(popupContainerDiv);
+  });
+
+  const noButton = document.createElement("button");
+  noButton.textContent = "No";
+  noButton.addEventListener("click", () => {
+    document.body.removeChild(popupContainerDiv);
+  });
+
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.appendChild(yesButton);
+  buttonsDiv.appendChild(noButton);
+
+  popupMessageDiv.appendChild(buttonsDiv);
+
+  popupContainerDiv.appendChild(popupMainDiv);
+  popupContainerDiv.appendChild(popupMessageDiv);
+
+  document.body.appendChild(popupContainerDiv);
 }
 
 export const DOMManipulation = (function() {
