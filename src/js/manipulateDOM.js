@@ -1,3 +1,14 @@
+function generateUUID() {
+  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
+    (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+  );
+}
+
+function deleteTask(taskNode) {
+  const taskList = document.querySelector(".tasks");
+  taskList.removeChild(taskNode);
+}
+
 export const DOMManipulation = (function() {
   function createTask(projectName, mainTaskName, subtasksList) {
     const mainTaskDiv = document.createElement("div");
@@ -12,7 +23,9 @@ export const DOMManipulation = (function() {
 
     const deleteTaskButton = document.createElement("button");
     deleteTaskButton.classList.add("delete_task_icon");
-    // TODO: add delete task event listener
+    deleteTaskButton.addEventListener("click", () => {
+      deleteTask(mainTaskDiv);
+    });
     projectNameDiv.appendChild(deleteTaskButton);
 
     mainTaskDiv.appendChild(projectNameDiv);
@@ -22,12 +35,13 @@ export const DOMManipulation = (function() {
 
     const mainTaskListItem = document.createElement("li");
 
+    const uuid = generateUUID();
     const mainTaskCheckboxInput = document.createElement("input");
     mainTaskCheckboxInput.setAttribute("type", "checkbox");
-    mainTaskCheckboxInput.setAttribute("id", mainTaskName);
+    mainTaskCheckboxInput.setAttribute("id", uuid);
 
     const mainTaskLabel = document.createElement("label");
-    mainTaskLabel.setAttribute("for", mainTaskName);
+    mainTaskLabel.setAttribute("for", uuid);
     mainTaskLabel.textContent = mainTaskName;
 
     mainTaskListItem.appendChild(mainTaskCheckboxInput);
@@ -38,12 +52,14 @@ export const DOMManipulation = (function() {
     subtasksList.forEach(taskName => {
       const listItem = document.createElement("li");
 
+      const uuid = generateUUID();
+
       const input = document.createElement("input");
       input.setAttribute("type", "checkbox");
-      input.setAttribute("id", taskName);
+      input.setAttribute("id", uuid);
 
       const label = document.createElement("label");
-      label.setAttribute("for", taskName);
+      label.setAttribute("for", uuid);
       label.textContent = taskName;
 
       listItem.appendChild(input);
