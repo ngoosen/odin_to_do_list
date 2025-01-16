@@ -13,6 +13,7 @@ html {
 
   --sage_green: #68887d;
   --grey_blue: #87a2a8;
+  --transition_light_grey_blue: #cad3d6;
   --light_grey_blue: #e8eef0;
   --not_black: #4d4d4d;
 }
@@ -168,6 +169,10 @@ main h1 {
 }
 
 .project_name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   padding: 5px 10px;
 
   background-color: var(--light_grey_blue);
@@ -181,6 +186,37 @@ main h1 {
   color: var(--sage_green);
   font-size: 12px;
   font-weight: bold;
+}
+
+.delete_task_icon {
+  appearance: none;
+  border: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 25px;
+  height: 25px;
+
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.delete_task_icon::before {
+  content: "-";
+
+  color: var(--sage_green);
+
+  line-height: 0;
+  font-size: 30px;
+
+  transform: translateY(-4px);
+}
+
+.delete_task_icon:hover {
+  cursor: pointer;
+  background-color: var(--transition_light_grey_blue);
 }
 
 .task_breakdown {
